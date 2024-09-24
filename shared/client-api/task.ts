@@ -1,5 +1,5 @@
-import { Task } from '@baseline/types/task';
-import { RequestHandler } from './request-handler';
+import type { Task } from '@baseline/types/task';
+import type { RequestHandler } from './request-handler';
 
 export const getTask = async (requestHandler: RequestHandler, taskId: string): Promise<Task> => {
   const response = await requestHandler.request<Task>({
@@ -16,7 +16,7 @@ export const getTask = async (requestHandler: RequestHandler, taskId: string): P
 export const getAllTasks = async (requestHandler: RequestHandler): Promise<Task[]> => {
   const response = await requestHandler.request<Task[]>({
     method: 'GET',
-    url: `task/list`,
+    url: 'task/list',
     hasAuthentication: true,
   });
   if ('data' in response) {
@@ -43,7 +43,7 @@ export const createTask = async (
 ): Promise<Task> => {
   const response = await requestHandler.request<Task>({
     method: 'POST',
-    url: `task`,
+    url: 'task',
     hasAuthentication: true,
     data: task,
   });
@@ -59,7 +59,7 @@ export const updateTask = async (
 ): Promise<Task> => {
   const response = await requestHandler.request<Task>({
     method: 'PATCH',
-    url: `task`,
+    url: 'task',
     hasAuthentication: true,
     data: task,
   });

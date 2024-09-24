@@ -1,8 +1,9 @@
-import { Response } from 'express';
+import type { Response } from 'express';
+
 import { taskMapper } from './task';
 import { isAdmin } from '../../middleware/is-admin';
-import { RequestContext } from '../../util/request-context.type';
-import { Task } from '@baseline/types/task';
+import type { RequestContext } from '../../util/request-context.type';
+import type { Task } from '@baseline/types/task';
 import { getErrorMessage } from '../../util/error-message';
 import createApp from '../../util/express-app';
 import createAuthenticatedHandler from '../../util/create-authenticated-handler';
