@@ -1,0 +1,16 @@
+Resources:
+  taskTable:
+    Type: AWS::DynamoDB::Table
+    DeletionPolicy: ${self:custom.deletionPolicy.${opt:stage}}
+    UpdateReplacePolicy: ${self:custom.updatePolicy.${opt:stage}}
+    Properties:
+      TableName: ${env:APP_NAME}-${opt:stage}-task
+      AttributeDefinitions:
+        - AttributeName: taskId
+          AttributeType: S
+      KeySchema:
+        - AttributeName: taskId
+          KeyType: HASH
+      BillingMode: PAY_PER_REQUEST
+      PointInTimeRecoverySpecification: 
+        PointInTimeRecoveryEnabled: true
