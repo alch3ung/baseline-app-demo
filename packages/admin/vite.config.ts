@@ -1,3 +1,4 @@
+import path from "path";
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import EnvironmentPlugin from 'vite-plugin-environment';
@@ -20,6 +21,7 @@ export default defineConfig({
   resolve: {
     alias: {
       './runtimeConfig': './runtimeConfig.browser',
+      "@": path.resolve(__dirname, "./src"),
     },
   },
   esbuild: {

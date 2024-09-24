@@ -1,5 +1,6 @@
 import { createAdmin } from '@baseline/client-api/admin';
-import React, { useState } from 'react';
+import React from 'react';
+import { useState } from 'react';
 import {
   FormGroup,
   Input,
@@ -11,7 +12,7 @@ import {
 } from 'reactstrap';
 import { getRequestHandler } from '@baseline/client-api/request-handler';
 import styles from './AddAdmin.module.scss';
-import { Admin } from '@baseline/types/admin';
+import type { Admin } from '@baseline/types/admin';
 
 interface Props {
   setAllAdmins: React.Dispatch<React.SetStateAction<Admin[]>>;

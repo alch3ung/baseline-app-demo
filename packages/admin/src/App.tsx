@@ -9,7 +9,10 @@ import {
   createBrowserRouter,
   redirect,
 } from 'react-router-dom';
+import type { AxiosRequestConfig } from 'axios';
 import '@aws-amplify/ui-react/styles.css';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+
 import Dashboard from './baseblocks/dashboard/pages/Dashboard';
 import User, { userLoader } from './baseblocks/user/pages/User';
 import Admins, { adminListLoader } from './baseblocks/admin/pages/Admins';
@@ -17,14 +20,13 @@ import {
   createRequestHandler,
   getRequestHandler,
 } from '@baseline/client-api/request-handler';
-import { AxiosRequestConfig } from 'axios';
+
 import Home from './baseblocks/home/pages/Home';
 import Login from './baseblocks/login/pages/Login';
 import NotAdmin from './baseblocks/not-admin/pages/NotAdmin';
 import Layout from './components/layout/Layout';
 import Loader from './components/page-content/loader/Loader';
 import { Tasks } from './baseblocks/tasks';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 const queryClient = new QueryClient()
 
