@@ -11,6 +11,12 @@ import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox"
 import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast"
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+  PopoverClose,
+} from "@/components/ui/popover"
 
 const TOAST_POSITION = cn('top-0 right-0 flex fixed md:max-w-[420px] md:top-4 md:right-4')
 
@@ -68,10 +74,23 @@ export function Tasks() {
         {tasks.map(t => (
           <li key={t.taskId} className="flex items-center gap-4 hover:bg-accent p-2">
             <Checkbox checked={t.completed} onClick={() => updateTask({ taskId: t.taskId, completed: !t.completed })} />
-            <p className={cn(t.completed && "line-through")}>{t.content}</p>
-            <Button variant="destructive" size="icon" className="ml-auto" onClick={() => deleteTask(t.taskId)}>
-              <Trash2 className="h-4 w-4" />
-            </Button>
+            <p className={cn(t.completed && "line-through", 'mr-auto')}>{t.content}</p>
+            <Popover>
+              <PopoverTrigger>
+                <Button variant="destructive" size="icon">
+                  <Trash2 className="h-4 w-4" />
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent>
+                <p className="text-sm">Are you sure you want to delete this task?</p>
+                <div className="flex gap-4 justify-end">
+                  <Button variant="destructive" size="sm" onClick={() => deleteTask(t.taskId)}>Yes</Button>
+                  <PopoverClose className="PopoverClose" aria-label="Close">
+                    <Button variant="ghost" size="sm">No</Button>
+                  </PopoverClose>
+                </div>
+              </PopoverContent>
+            </Popover>
           </li>
         ))}
       </ul>
