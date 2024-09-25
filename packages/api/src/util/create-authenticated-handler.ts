@@ -11,6 +11,7 @@ const createAuthenticatedHandler = (app: Application) => {
     ) {
       request.context = event.requestContext;
       request.currentUserSub = `${request.context?.authorizer?.claims?.sub}`;
+      request.currentUserEmail = `${request.context?.authorizer?.claims?.email}`;
     },
   });
   return handler;

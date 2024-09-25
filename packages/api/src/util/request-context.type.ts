@@ -8,6 +8,7 @@ export type RequestContext = Request & {
   context: APIGatewayEventRequestContextWithAuthorizer<Authorizer>;
 } & {
   currentUserSub: string;
+  currentUserEmail: string;
 };
 
 export type Authorizer = APIGatewayEventDefaultAuthorizerContext & {

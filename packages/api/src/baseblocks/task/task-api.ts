@@ -17,9 +17,10 @@ app.post('/task', [
   isAdmin,
   async (req: RequestContext, res: Response) => {
     try {
+      const email = req.currentUserEmail;
       const { content, completed } = req.body as Task;
       const taskData: Partial<Task> = {
-        content, completed,
+        content, completed, email
       };
       const task = await taskService.create(taskData);
       res.json(taskMapper(task));
@@ -73,8 +74,9 @@ app.get('/task/list', [
   isAdmin,
   async (req: RequestContext, res: Response) => {
     try {
+      const email = req.currentUserEmail;
       const tasks = await taskService.getAll();
-      const formattedTasks = tasks.map(taskMapper);
+      const formattedTasks = tasks.map(taskMapper).filter(t => t.email === email);
       res.json(formattedTasks);
     } catch (error) {
       const message = getErrorMessage(error);

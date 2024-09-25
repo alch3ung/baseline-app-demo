@@ -6,9 +6,9 @@ import {
   getAllItems,
   putItem,
   updateItem,
-  DynamoDbDocumentClient,
+  type DynamoDbDocumentClient,
 } from '@baselinejs/dynamodb';
-import { randomUUID } from 'crypto';
+import { randomUUID } from 'node:crypto';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export class ServiceObject<T extends Record<string, any>> {
